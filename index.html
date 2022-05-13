@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>MEMORY HOLE 🕳</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body @scroll="getMoreImages">
+    <div id="main">
+        <div class="overlay" v-if="uploadStatus || selectedImage" @click="removeOverlay"></div>
+
+        <div class="title">{{title}}</div>
+ 
+        <image-focus v-if="selectedImage" :image-id="selectedImage" @does-not-exist="closeOut"></image-focus>
+
+        <upload v-if="uploadStatus" @add-image="addImage" @successful-upload="memoryHole"></upload>
+
+        <notification v-if="notification" @refresh="loadImages"></notification>
+
+        <div class="image-grid">
+            <div class="image-container" v-for="image in images" :key="image.id">
+                <img class="thumb" :src="image.url" :alt="image.title" @click="selectImage(image.id)">
+            </div>
+        </div>
+
+        <button class="uploadImage" @click="upload"><span class="hole">🕳</span></button>
+   
+        <footer v-if="bottom" class="credits">
+            <span>You have reached the end.</span>
+            <span>Typeface: Monument Grotesk by <a href="https://abcdinamo.com/" target="_blank">Dinamo</a></span>
+        </footer>
+    </div>
+    <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
+    <script src="/js/script.js" type="text/javascript"></script>
+</body>
+</html>

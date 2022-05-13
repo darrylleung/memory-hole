@@ -1,0 +1,474 @@
+* {
+    background-color: rgb(224, 208, 183);
+    font-family: "Monument Grotesk";
+    font-size: 14pt;
+    font-weight: 600;
+    color: rgb(102, 138, 146);
+    box-sizing: border-box;
+    user-select: none;
+}
+
+div.comments::-webkit-scrollbar {
+    background-color: rgb(224, 208, 183);
+    visibility: hidden;
+}
+::-webkit-scrollbar {
+    background-color: rgb(224, 208, 183);
+    visibility: hidden;
+}
+
+@font-face {
+    font-family: "Monument Grotesk";
+    src: url("/fonts/ABCMonumentGrotesk-Regular-Trial.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Monument Grotesk Bold";
+    src: url("/fonts/ABCMonumentGrotesk-Bold-Trial.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Monument Grotesk Heavy";
+    src: url("/fonts/ABCMonumentGrotesk-Heavy-Trial.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Monument Grotesk Italic";
+    src: url("/fonts/ABCMonumentGrotesk-RegularItalic-Trial.woff2")
+        format("woff2");
+}
+
+div.image-grid {
+    display: grid;
+    /* grid-template-columns: repeat(4, 1fr); */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 10px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    pointer-events: auto;
+}
+
+div.image-container {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: rgb(224, 208, 183) 1px solid;
+}
+
+div.title {
+    position: fixed;
+    background-color: transparent;
+    width: fit-content;
+    margin-top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: "Monument Grotesk Bold";
+    font-size: 120pt;
+    z-index: 101;
+    pointer-events: none;
+}
+
+img.thumb {
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+}
+
+h1 {
+    font-size: 24pt;
+}
+
+input.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+input.inputFile + label {
+    font-size: 1.25em;
+    background-color: rgb(210, 174, 144);
+    border: 3px solid rgb(102, 138, 146);
+    color: rgb(102, 138, 146);
+    border-radius: 30px;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dragOver + label,
+.dragOver {
+    pointer-events: none;
+}
+
+input.inputFile:focus + label,
+input.inputFile + label:hover {
+    background-color: rgb(102, 138, 146);
+    color: rgb(210, 174, 144);
+}
+
+input.inputFile:active + label {
+    transform: translateY(2px);
+}
+
+div.fileUpload {
+    position: fixed;
+    width: 1000px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: scale(1) translate(-50%, -50%);
+    background-color: rgb(175, 165, 144);
+    /* border: 2px dashed black; */
+    z-index: 101;
+    overflow: hidden;
+}
+
+div.dropZone {
+    display: flex;
+    flex-direction: column;
+    padding-top: 15%;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.fileOver {
+    background-color: rgb(175, 165, 144);
+}
+
+/* .over {
+    background-color: rgb(175, 165, 144);
+} */
+
+div.fileUploadInputs {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 250px;
+    margin-top: 0px;
+    padding: 10px;
+    background-color: rgb(210, 174, 144);
+    border-radius: 30pt;
+}
+
+.showInputs {
+    transition-property: transform;
+    transition-duration: 1.5s;
+    transform: translateY(-85%);
+}
+
+div.fileUploadTitleUser {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 35%;
+    height: 100%;
+    background-color: rgb(210, 174, 144);
+}
+
+input.standard {
+    font-family: "Monument Grotesk";
+    font-weight: 600;
+    font-size: 14pt;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: rgb(102, 138, 146) 3px solid;
+    width: 330px;
+    height: 50px;
+    background-color: rgb(210, 174, 144);
+}
+
+textarea.description {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35%;
+    height: 65%;
+    border: rgb(102, 138, 146) 3px dashed;
+    resize: none;
+    outline: none;
+    padding: 10px;
+    background-color: rgb(210, 174, 144);
+}
+
+::placeholder {
+    color: rgb(175, 165, 144);
+}
+
+.standard::placeholder {
+    color: rgb(102, 138, 146);
+}
+
+.description::placeholder {
+    color: rgb(102, 138, 146);
+}
+
+button.submit {
+    position: relative;
+    top: 40%;
+    border-radius: 30pt;
+    padding: 0 20px;
+    height: 45px;
+    width: 120px;
+    margin-bottom: 20px;
+    border: rgb(102, 138, 146) 3px solid;
+    background-color: rgb(210, 174, 144);
+    font-family: "Monument Grotesk Bold";
+    font-weight: 800;
+}
+
+button.submit:hover {
+    color: rgb(210, 174, 144);
+    background-color: rgb(102, 138, 146);
+}
+
+p.drop {
+    font-size: 32pt;
+    font-weight: 600;
+}
+
+h3 {
+    padding-left: 50px;
+}
+
+div.imageFocusContainer {
+    position: fixed;
+    display: flex;
+    background-color: rgb(224, 208, 183);
+    /* border: 2px black dashed; */
+    width: 1000px;
+    height: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    z-index: 200;
+}
+
+img.focusedImage {
+    object-fit: cover;
+    width: 60%;
+    height: 100%;
+}
+
+div.focusedText {
+    width: 40%;
+    height: 100%;
+    background-color: rgb(224, 208, 183);
+    display: flex;
+    flex-direction: column;
+}
+
+div.focusedTextTitle {
+    width: 100%;
+    padding: 20px 20px 0 20px;
+    height: 150px;
+    background-color: rgb(224, 208, 183);
+    display: inline;
+}
+
+span.title {
+    font-family: "Monument Grotesk Bold";
+    font-weight: 600;
+    font-size: 18pt;
+}
+
+span.username {
+    font-family: "Monument Grotesk Italic";
+    font-weight: 600;
+    font-size: 14pt;
+    padding-left: 3px;
+}
+
+span.commenter {
+    font-family: "Monument Grotesk Italic";
+    font-weight: 600;
+    font-size: 10pt;
+    margin-top: -10px;
+}
+
+p.description {
+    font-family: "Monument Grotesk";
+    font-weight: 600;
+    font-size: 14pt;
+    color: rgb(175, 165, 144);
+}
+
+div.commentsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px;
+    width: 100%;
+    padding-left: 20px;
+    color: rgb(175, 165, 144);
+}
+
+div.comments {
+    height: 250px;
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    width: 100%;
+    overflow-y: scroll;
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+input.commentUsername {
+    font-family: "Monument Grotesk";
+    font-weight: 600;
+    font-size: 14pt;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: rgb(175, 165, 144) 3px solid;
+    width: 350px;
+    height: 50px;
+}
+
+input.comment {
+    font-family: "Monument Grotesk";
+    font-weight: 600;
+    font-size: 14pt;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: rgb(175, 165, 144) 3px solid;
+    width: 350px;
+    height: 50px;
+    overflow: auto;
+}
+
+button.submitComment {
+    top: 50%;
+    border-radius: 30pt;
+    padding: 0 20px;
+    height: 45px;
+    width: 120px;
+    margin-bottom: 20px;
+    border: rgb(102, 138, 146) 3px solid;
+    background-color: rgb(210, 174, 144);
+    font-family: "Monument Grotesk Bold";
+    font-weight: 800;
+}
+
+button.submitComment:hover {
+    color: rgb(210, 174, 144);
+    background-color: rgb(102, 138, 146);
+}
+
+button:active {
+    transform: translateY(2px);
+}
+
+button.uploadImage {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: rgb(210, 174, 144);
+    border: rgb(102, 138, 146) 3px solid;
+    z-index: 102;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    transition: 0.5s ease-in-out;
+}
+
+button.uploadImage:hover {
+    color: rgb(210, 174, 144);
+    background-color: rgb(102, 138, 146);
+    transform: scale(1.5);
+}
+
+span.hole {
+    position: relative;
+    font-size: 48pt;
+    bottom: 10px;
+    background-color: transparent;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(175, 165, 144, 0.6);
+    visibility: visible;
+    z-index: 4;
+}
+
+.memoryHole {
+    transform-origin: 0 0;
+    animation: memoryHole 2s ease-out;
+}
+
+button.notification {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    top: 35px;
+    left: 25px;
+    border: none;
+    z-index: 1000;
+    position: fixed;
+    font-size: 36pt;
+}
+
+.credits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes memoryHole {
+    0% {
+        border-radius: 0;
+        transform: scale(1) translate(-50%, -50%);
+    }
+    50% {
+        border-radius: 100%;
+        width: 300px;
+        height: 300px;
+        transform: scale(0.5) translate(-50%, -50%);
+    }
+    100% {
+        border-radius: 100%;
+        width: 10px;
+        height: 10px;
+        transform: scale(0) translate(-50%, -50%);
+    }
+}
+
+@media (max-width: 1350px) {
+    div.image-grid {
+        margin-bottom: 200px;
+    }
+}
+
+@media (max-width: 1150px) {
+    div.image-grid {
+        margin-bottom: 300px;
+    }
+}
+
+@media (max-width: 950px) {
+    div.image-grid {
+        margin-bottom: 400px;
+    }
+}
