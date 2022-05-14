@@ -76,10 +76,12 @@ Vue.createApp({
             let lastId = this.images[this.images.length - 1].id;
 
             fetch(`/moreimages/${lastId}`)
-                .then((resp) => resp.json())
+                .then((res) => res.json())
                 .then((moreImages) => {
                     let nextBatch = moreImages.rows;
+                    console.log("images received from next batch: ", nextBatch);
                     this.images = [...this.images, ...nextBatch];
+                    return;
                 })
                 .catch((err) => console.log("error: ", err));
         },
