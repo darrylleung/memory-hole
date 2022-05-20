@@ -80,8 +80,7 @@ Vue.createApp({
                 .then((moreImages) => {
                     let nextBatch = moreImages.rows;
                     console.log("images received from next batch: ", nextBatch);
-                    this.images = [...this.images, ...nextBatch];
-                    return;
+                    return this.images = [...this.images, ...nextBatch];
                 })
                 .catch((err) => console.log("error: ", err));
         },
