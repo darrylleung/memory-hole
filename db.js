@@ -38,14 +38,6 @@ exports.getMoreImages = (lastId) => {
     );
 };
 
-// exports.getImageComments = (imageId) => {
-//     return db.query(
-//         `SELECT id, comment, username, imageID, date(created_at) FROM comments
-//         WHERE imageId = $1`,
-//         [imageId]
-//     );
-// };
-
 exports.getImageComments = (imageId) => {
     return db.query(
         `SELECT * FROM comments

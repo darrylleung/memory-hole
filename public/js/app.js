@@ -36,16 +36,17 @@ Vue.createApp({
         this.loadImages();
 
         window.onscroll = () => {
-            console.log("The window is scrolling");
+            // console.log("The window is scrolling");
             let bottomOfWindow =
-                document.documentElement.scrollTop +
-                    document.documentElement.offsetHeight >=
-                document.documentElement.scrollHeight;
+                window.innerHeight +
+                    window.scrollY >=
+                document.documentElement.offsetHeight - 2;
 
             if (bottomOfWindow) {
                 console.log("We've reached the bottom");
                 this.bottom = true;
-                return this.getMoreImages();
+                this.getMoreImages();
+                return;
             }
         };
 
@@ -66,13 +67,11 @@ Vue.createApp({
                 });
         },
         selectImage(imageId) {
-            console.log("user selected an image");
-            console.log("selected imageId: ", imageId);
             this.selectedImage = imageId;
             history.pushState({}, "", imageId);
         },
         getMoreImages() {
-            console.log("user is scrolling");
+            // console.log("user is scrolling");
             let lastId = this.images[this.images.length - 1].id;
 
             fetch(`/moreimages/${lastId}`)
@@ -80,7 +79,8 @@ Vue.createApp({
                 .then((moreImages) => {
                     let nextBatch = moreImages.rows;
                     console.log("images received from next batch: ", nextBatch);
-                    return this.images = [...this.images, ...nextBatch];
+                    this.images = [...this.images, ...nextBatch];
+                    return;
                 })
                 .catch((err) => console.log("error: ", err));
         },
