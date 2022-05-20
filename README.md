@@ -8,24 +8,16 @@ Live site: https://memory-hole.herokuapp.com
 
 The Memory Hole 🕳 is a public image board platform that allows users to upload and comment. 
 
-### Profile
-- Users can upload a profile image. Uploaded images stored with AWS S3.
-- Users can set a 140 character bio and add one link to the Bio component. Link is represented as an icon for other users. Popular social media sites (Instagram, TikTok, twitter, Facebook) are represented with the appropriate site icon, while others are represented with a generic.
-- A Wall component takes up the majority of the space in a user's profile. Users can create new Wall posts using the button on the bottom-right of the page. The writing component utilizes `Quill.js`, allowing users to compose posts through an elegant rich-text editor.
-- Wall posts stored in state using `Redux`.
+## Image Grid
+- Photographs are arranged using `Grid`, with new images appearing at the top. 
+- Clicking on an image thumbnail brings up the Image Focus component, where users can see a larger version of the image as well as the image poster's name, the title and description of the image, and a comment section.
+- Scrolling down the page loads more pictures until there are no more images.
 
-### Friends
-- Search for other users within the Friends component. Search loops through the global database of users and instantly returns the top 5 entries matching query.
-- The Friends component also includes existing lists of Friends and Requests, stored in state using `Redux`.
-
-### Global Chat
-- A Global Chat component is embedded on the profile page. The chat is populated on load via `Redux` and new chat messages are instantly served using `Socket.IO`.
-- Each chat message includes the sender's profile picture and name. The profile pic links to their profile page.
-
-### Other Users Profiles
-- Users profile picture, name, bio, and link are publicly available to all.
-- A button in the Bio component allows users to Add Friend, Unfriend, or Cancel Request. This behavior is handled via `Redux` and reflected in the Friends page.
-- Other users Wall components are private unless Friends. 
+## Uploader
+- A button on the bottom-left of the app opens the Uploader component.
+- Users can select a file or choose to drag and drop an image into the component.
+- Once an image has been selected, a panel slides up to reveal the inputs for the image data (name, title, and description).
+- Upon completion of upload, the component disappears into the void (very proud of this bit of CSS!)
 
 ## Tech Stack
 
