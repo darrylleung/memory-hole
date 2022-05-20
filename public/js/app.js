@@ -44,8 +44,8 @@ Vue.createApp({
 
             if (bottomOfWindow) {
                 console.log("We've reached the bottom");
-                this.getMoreImages();
                 this.bottom = true;
+                return this.getMoreImages();
             }
         };
 
